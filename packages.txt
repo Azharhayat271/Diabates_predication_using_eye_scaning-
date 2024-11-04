@@ -4,3 +4,5 @@ tensorflow
 numpy
 opencv-python-headless
 python-multipart
+opencv-python
+
