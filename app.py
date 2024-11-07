@@ -1,5 +1,6 @@
 from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware  # Import CORSMiddleware
 import tensorflow as tf
 import numpy as np
 import cv2
@@ -7,6 +8,15 @@ import io
 
 # Initialize FastAPI app
 app = FastAPI()
+
+# Enable CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins, replace with specific origins for production
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all HTTP methods
+    allow_headers=["*"],  # Allows all headers
+)
 
 # Load the trained model (.keras format)
 model = tf.keras.models.load_model('best_model.keras')
